@@ -135,5 +135,9 @@ MEDIA_URL = '/media/'
 
 # Django Storages
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = 'UmOb4zjJ2DYAAAAAAAAAASPdR381o8wt2CYQeqHHwFONFVKOk3_U41Z-TEAlcP4A'
+DROPBOX_OAUTH2_TOKEN = 'L024Y8tt4lUAAAAAAAAAAbMW4noW2Oa80RyC27qYV5MLh6tnfnh2nPYKeFLT2s6c'
+
+# Django Heroku
+import django_heroku
+django_heroku.settings(locals())
 

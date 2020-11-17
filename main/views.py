@@ -9,6 +9,7 @@ from random import randint
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -94,7 +95,7 @@ class RegistrationView(FormView):
 
     return super().form_valid(form)
 
-class AddToCartView(View):
+class AddToCartView(LoginRequiredMixin,View):
     def get(self, request, product_pk):
         # Obten el cliente
         user_profile = Profile.objects.get(user=request.user)
@@ -120,7 +121,7 @@ class AddToCartView(View):
         # Recarga la página
         return redirect(request.META['HTTP_REFERER'])
 
-class RemoveFromCartView(View):
+class RemoveFromCartView(LoginRequiredMixin,View):
     def get(self, request, product_pk):
         # Obten el cliente
         user_profile = Profile.objects.get(user=request.user)
@@ -145,7 +146,7 @@ class RemoveFromCartView(View):
         # Recarga la página
         return redirect(request.META['HTTP_REFERER'])
 
-class PedidoDetailView(DetailView):
+class PedidoDetailView(LoginRequiredMixin,DetailView):
     model = Pedido
 
     def get_object(self):
@@ -175,7 +176,7 @@ class PedidoUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class PaymentView(TemplateView):
+class PaymentView(LoginRequiredMixin,TemplateView):
     template_name = "main/payment.html"
 
     def get_context_data(self, **kwargs):

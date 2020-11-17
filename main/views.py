@@ -188,7 +188,7 @@ class PaymentView(LoginRequiredMixin,TemplateView):
 
         return context
 
-class CompletePaymentView(View):
+class CompletePaymentView(LoginRequiredMixin,View):
     def get(self, request):
         # Obten el cliente
         user_profile = Profile.objects.get(user=request.user)

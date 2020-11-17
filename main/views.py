@@ -162,7 +162,7 @@ class PedidoDetailView(LoginRequiredMixin,DetailView):
         context['detalles'] = context['object'].detallepedido_set.all()
         return context
 
-class PedidoUpdateView(UpdateView):
+class PedidoUpdateView(LoginRequiredMixin,UpdateView):
     model = Pedido
     fields = ['ubicacion', 'direccion_entrega']
     success_url = reverse_lazy('payment')

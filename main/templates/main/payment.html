@@ -24,7 +24,7 @@
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            window.location.href = 'https://liniopr.herokuapp.com';
+            window.location.href = 'https://liniopr.herokuapp.com/complete_payment';
           });
         }
       }).render('#paypal-button-container'); // Display payment options on your web page
